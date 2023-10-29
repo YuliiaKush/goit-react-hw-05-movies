@@ -14,7 +14,7 @@ const Cast = lazy(() =>
     })
 );
 const Review = lazy(() =>
-    import('../components/Rewiew/Review').then(module => {
+    import('../components/Review/Review').then(module => {
         return {
             ...module,
             default: module.Review,

@@ -1,10 +1,10 @@
 export const theme = Object.freeze({
     colors: {
-        accent: '#19171d',
+        accent: 'black',
         hover: '#1c2124',
         white: '#ffffff',
         light: 'rgba(255,255,255,.5)',
-        mainBackground: '#404040',
+        mainBackground: '#00cfff',
     },
     fontSizes: {
         small: '14px',

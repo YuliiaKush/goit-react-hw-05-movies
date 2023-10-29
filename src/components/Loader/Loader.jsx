@@ -7,7 +7,7 @@ export const Loader = () => {
             <ThreeCircles
                 height="100"
                 width="100"
-                color="#369daf"
+                color="black"
                 wrapperStyle={{
                     position: 'absolute',
                     top: '50%',

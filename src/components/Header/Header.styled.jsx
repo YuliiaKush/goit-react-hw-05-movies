@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 export const Logotype = styled(Link)`
     display: flex;
     width: 90px;
-    height: 70px;
+    height: 90px;
     background-image: url(${svg});
     background-position: center;
     background-repeat: no-repeat;
