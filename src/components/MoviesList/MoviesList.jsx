@@ -1,35 +1,32 @@
+import { Grid, GridItem } from 'components/App.styled';
 import { useLocation } from 'react-router-dom';
-import { Wrapper, List, Item, LinkToDetails } from './MoviesList.styled';
-import propTypes from 'prop-types';
+import {
+    CardOverlay,
+    Description,
+    ImgWrapper,
+    MovieLink,
+    MovieTitle,
+} from './MovieList.styled';
+import { normalizeMoviesData } from 'services/normalize';
 
-export const MoviesList = ({ movies }) => {
-  const location = useLocation();
-
-  return (
-    <Wrapper>
-      <List>
-        {movies.map(movie => (
-          <Item key={movie.id}>
-            <LinkToDetails
-              to={`/movies/${movie.id}`}
-              state={{ from: location }}
-              cover={movie.poster_path}
-            >
-              {movie.title}
-            </LinkToDetails>
-          </Item>
-        ))}
-      </List>
-    </Wrapper>
-  );
-};
-
-MoviesList.propTypes = {
-  movies: propTypes.arrayOf(
-    propTypes.shape({
-      id: propTypes.number.isRequired,
-      title: propTypes.string.isRequired,
-      poster_path: propTypes.string,
-    })
-  ),
+export const MovieList = ({ movies }) => {
+    const location = useLocation();
+    const data = normalizeMoviesData(movies);
+    return (
+        <Grid>
+            {data.map(({ id, movie_title, poster }) => (
+                <GridItem key={id}>
+                    <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+                        <ImgWrapper>
+                            <img src={poster} alt={movie_title} />
+                            <CardOverlay className="js-overlay">
+                                <MovieTitle>{movie_title}</MovieTitle>
+                                <Description>Сlick for details</Description>
+                            </CardOverlay>
+                        </ImgWrapper>
+                    </MovieLink>
+                </GridItem>
+            ))}
+        </Grid>
+    );
 };

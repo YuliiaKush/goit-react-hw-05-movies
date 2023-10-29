@@ -1,83 +1,60 @@
+import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import filmTape from 'images/film-tape.png';
-import defaultPoster from 'images/default_poster.jpg';
-import propTypes from 'prop-types';
 
-export const Wrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 30px;
-
-  @media screen and (max-width: 768px) {
-    padding: 0 8px;
-  }
-`;
-
-export const List = styled.ul`
-  list-style: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-`;
-
-export const Item = styled.li`
-  padding: 5px 12px;
-  border-bottom: 1px solid transparent;
-  position: relative;
-
-  &::before {
-    content: '';
-    background-image: url(${filmTape});
-    background-size: cover;
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    left: -25px;
-  }
-
-  @media screen and (max-width: 768px) {
-    font-size: 0.8rem;
-  }
-`;
-
-export const LinkToDetails = styled(Link)`
-  color: #000;
-  text-decoration: none;
-  margin: 1px;
-
-  &:hover,
-  &:focus {
-    color: #ff3cac;
-  }
-
-  @media screen and (min-width: 768px) {
-    &:hover::after,
-    &:focus::after {
-      content: '';
-      background-image: ${props =>
-        props.cover
-          ? `url('https://image.tmdb.org/t/p/w500/${props.cover}')`
-          : `url(${defaultPoster})`};
-
-      background-size: cover;
-      width: 160px;
-      height: 240px;
-      display: block;
-      border-radius: 4px;
-      border: 1px solid rgba(43, 134, 197);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      position: absolute;
-      top: -140px;
-      left: 400px;
-      z-index: 1;
+export const ImgWrapper = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
-  }
 `;
 
-Item.propTypes = {
-  filmTape: propTypes.string,
-};
+export const MovieLink = styled(Link)`
+    display: block;
+    flex-grow: 1;
+`;
 
-LinkToDetails.propTypes = {
-  cover: propTypes.string,
-  defaultPoster: propTypes.string,
-};
+export const CardOverlay = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    background-color: #000000e8;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    ${/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+    )
+        ? 'transform: translateY(0); opacity: 1;'
+        : 'transform: translateY(100%); opacity: 0;'}
+`;
+
+export const MovieTitle = styled.h2`
+    line-height: 1.5;
+    text-align: center;
+    color: ${props => props.theme.colors.white};
+    font-size: ${props => props.theme.fontSizes.medium};
+`;
+
+export const Description = styled.p`
+    padding: 4px 10px;
+    background-color: ${props => props.theme.colors.white};
+    border-radius: 12px;
+    color: ${props => props.theme.colors.accent};
+    font-size: ${props => props.theme.fontSizes.small};
+    font-weight: 700;
+`;

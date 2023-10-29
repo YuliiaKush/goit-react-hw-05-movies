@@ -1,83 +1,37 @@
-import styled from 'styled-components';
-import propTypes from 'prop-types';
+import styled from '@emotion/styled';
 
-export const Wrapper = styled.div`
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  margin: 20px 0;
-  width: 100%;
-  max-width: 1200px;
-  height: 100%;
-  height: 500px;
-  overflow-y: scroll;
-  transition: all 0.2s ease-in-out;
-  padding: 10px;
-  overflow: overlay;
-
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-  }
+export const CastTitle = styled.h2`
+    color: ${({ theme }) => theme.colors.white};
+    margin-bottom: 20px;
 `;
 
-export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+export const CastGrid = styled.ul`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: ${({ theme }) => theme.spacing.step * 5}px;
 `;
 
-export const Item = styled.li`
-  display: flex;
-  flex-direction: row;
-  height: 200px;
-  gap: 20px;
-  width: 100%;
-  margin-bottom: 10px;
-  border-radius: 10px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  &:hover {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 60, 172, 0.5) 15%,
-      rgba(120, 75, 160, 0.5) 35%,
-      rgba(43, 134, 197, 0.5) 45%,
-      rgba(255, 255, 255, 0.2) 90%
-    );
-  }
+export const CastElement = styled.li`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.accent};
+    & p {
+        padding: 0 5px;
+        line-height: 1.3;
+        text-align: center;
+    }
+    & p:last-child {
+        margin-top: auto;
+    }
 `;
 
-export const Image = styled.img`
-  width: ${props => props.width};
-  height: ${props => props.height};
-  border-radius: 5px;
+export const CastPhoto = styled.img`
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    aspect-ratio: 3 / 4;
 `;
-
-export const Name = styled.p`
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #000;
-  margin: 10px 0;
-  width: 25%;
-  display: flex;
-  align-items: center;
-`;
-
-export const Character = styled.p`
-  font-size: 1rem;
-  font-weight: 400;
-  color: #000;
-  margin: 10px 0;
-  max-width: 50%;
-  display: flex;
-  align-items: center;
-`;
-
-Image.propTypes = {
-  width: propTypes.number,
-  height: propTypes.number,
-};
